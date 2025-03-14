@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { TextRevealCard, TextRevealCardTitle } from '@/components/ui/text-reveal-card';
 import { createClient } from '@/utils/supabase/server';
 
-const GroupIdPage = async ({ params }: { params: { id: string } }) => {
+const GroupIdPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const supabase = await createClient();
   const groupId = (await params).id;
   const { data: authUser } = await supabase.auth.getUser();
