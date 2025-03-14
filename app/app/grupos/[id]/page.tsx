@@ -59,8 +59,8 @@ const GroupIdPage = async ({ params }: { params: Promise<{ id: string }> }) => {
           </Table>
           <Separator className="my-6" />
 
-          <TextRevealCard text="Passe o mouse para revelar" revealText={assignedParticipant?.name} className="w-full">
-            <TextRevealCardTitle>Seu amigo secreto</TextRevealCardTitle>
+          <TextRevealCard text="Revele aqui" revealText={assignedParticipant?.name} className="w-full">
+            <TextRevealCardTitle className="text-center">Seu amigo secreto</TextRevealCardTitle>
           </TextRevealCard>
         </CardContent>
       </Card>

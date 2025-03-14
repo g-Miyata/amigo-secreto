@@ -96,19 +96,24 @@ async function sendEmailToParticipants(participants: Participant[], groupName: s
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
-    await Promise.all(
-      participants.map((participant) => {
-        resend.emails.send({
-          from: 'Miyata <contato@g-miyata.com>',
-          to: participant.email,
-          subject: `Sorteio de amigo secreto - ${groupName}`,
-          html: `<p>Você está participando do amigo secreto do grupo ${groupName}.<br/><br/> O seu amigo secreto é <strong>
-    ${participants.find((p) => p.id === participant.assigned_to)?.name}</strong></p>`,
-        });
-      })
-    );
+    // Process emails sequentially instead of in parallel
+    for (const participant of participants) {
+      // Send email
+      await resend.emails.send({
+        from: 'Miyata <contato@g-miyata.com>',
+        to: participant.email,
+        subject: `Sorteio de amigo secreto - ${groupName}`,
+        html: `<p>Você está participando do amigo secreto do grupo ${groupName}.<br/><br/> O seu amigo secreto é <strong>
+${participants.find((p) => p.id === participant.assigned_to)?.name}</strong></p>`,
+      });
+
+      // Add a 2-second delay before sending the next email
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+    }
+
     return { error: null };
-  } catch {
+  } catch (error) {
+    console.error("Email sending error:", error);
     return { error: 'Erro ao enviar os emails.' };
   }
 }
