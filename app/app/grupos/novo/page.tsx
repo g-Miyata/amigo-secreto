@@ -11,7 +11,7 @@ const NewGroupPage = async () => {
   };
 
   return (
-    <div className="mt-40">
+    <div className="mt-10 md:mt-30">
       <NewGroupForm loggedUser={loggedUser} />
     </div>
   );

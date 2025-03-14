@@ -29,7 +29,7 @@ const GroupIdPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const assignedParticipant = data.participants.find((p) => p.id === assignedParticipantId);
 
   return (
-    <main className="container mx-auto py-6">
+    <main className="container mx-auto py-6 min-w-100 p-2">
       <Card className="w-full max-w-3xl mx-auto">
         <CardHeader>
           <div className="flex items-center justify-between">

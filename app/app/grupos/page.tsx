@@ -5,6 +5,7 @@ import { createClient } from '@/utils/supabase/server';
 import { Calendar } from 'lucide-react';
 import Link from 'next/link';
 
+
 const GroupPage = async () => {
   const supabase = await createClient();
   const { data: authUser } = await supabase.auth.getUser();
@@ -26,7 +27,7 @@ const GroupPage = async () => {
   }
 
   return (
-    <main className="container mx-auto p-4">
+    <main className="container mx-auto p-4 min-w-100">
       <h1 className="text-3xl font-bold mb-4">Meus grupos</h1>
       <Separator className="my-4" />
       <ScrollArea className="h-[calc(100vh-200px)]">

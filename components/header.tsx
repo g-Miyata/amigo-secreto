@@ -1,8 +1,11 @@
-import { Gift, UsersRound } from 'lucide-react';
+'use client';
+import { Gift, PlusCircleIcon, UsersRound } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from './ui/button';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
+  const pathname = usePathname();
   return (
     <header className="border-b">
       <div className="container mx-auto p-4">
@@ -14,13 +17,18 @@ const Header = () => {
               <span className="font-thin">Secreto</span>
             </span>
           </Link>
-          <nav className="flex items-center space-x-4">
-            <Link href="/app/grupos" className="text-foreground text-sm flex gap-2 items-center">
-              <UsersRound className="w-4 h-4" />
-              Meus Grupos
-            </Link>
+          <nav className="flex flex-col items-center md:flex-row gap-2  min-w-50">
             <Button asChild variant="outline">
-              <Link href="/app/grupos/novo">Novo Grupo</Link>
+              <Link href="/app/grupos" className={`w-40 text-foreground text-sm flex gap-2 items-center ${pathname === '/app/grupos' ? 'text-red-400' : ''}`}>
+                <UsersRound className="w-4 h-4" />
+                Meus Grupos
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/app/grupos/novo" className={`${pathname === '/app/grupos/novo' ? 'text-red-400' : ''} w-40`}>
+                <PlusCircleIcon className="w-4 h-4" />
+                Novo Grupo
+              </Link>
             </Button>
           </nav>
         </div>
