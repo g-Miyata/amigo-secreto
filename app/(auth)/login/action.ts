@@ -16,7 +16,7 @@ export async function login(previousState: LoginState, formData: FormData) {
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/confirm`,
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}`,
     },
   });
 
